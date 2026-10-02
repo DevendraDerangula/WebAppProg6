@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Devendra's Actor Guessing Game</title>
+</head>
+<body>
+    <h1>Actors by Devendra Derangula</h1>
+
+    <form>
+        <label for="secretActor">Peter Pan</label>
+        <input type="password" id="secretActor" value="Robin Williams">
+        <br><br>
+
+        <label for="actorGuess">Who is the actor</label>
+        <input type="text" id="actorGuess">
+        <br><br>
+
+        <input type="button"
+               value="Check the guess"
+               onclick="checkActor()">
+    </form>
+
+    <div id="actorResults">Correct: 0; Not correct: 0</div>
+
+    <script>
+        let correct = 0;
+        let notCorrect = 0;
+
+        function checkActor() {
+            let secret = document.getElementById("secretActor").value;
+            let guess = document.getElementById("actorGuess").value;
+
+            if (secret === guess) {
+                correct++;
+                alert("That's right");
+            } else {
+                notCorrect++;
+                alert("Better luck next time");
+            }
+
+            document.getElementById("actorResults").innerHTML =
+                "Correct: " + correct + "; Not correct: " + notCorrect;
+        }
+    </script>
+</body>
+</html>
