@@ -27,6 +27,7 @@
     <script>
         let correct = 0;
         let notCorrect = 0;
+        let usePic = 1;
 
         function checkActor() {
             let secret = document.getElementById("secretActor").value;
@@ -43,6 +44,28 @@
             document.getElementById("actorResults").innerHTML =
                 "Correct: " + correct + "; Not correct: " + notCorrect;
         }
+        function updatePic() {
+            switch(usePic) {
+                case 1:
+                document.getElementById("foodImage").src = "nachos.jpg";
+                usePic = 2;
+                break;
+
+                case 2:
+                document.getElementById("foodImage").src = "ramen.jpg";
+                usePic = 3;
+                break;
+
+                case 3:
+                document.getElementById("foodImage").src = "dosa.jpg";
+                usePic = 1;
+                break;
+            }
+        }   
     </script>
+
+    <div>
+    <img id="foodImage" src="dosa.jpg" width="150" height="150" onclick="updatePic()">
+</div>
 </body>
 </html>
