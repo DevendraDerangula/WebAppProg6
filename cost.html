@@ -33,7 +33,39 @@
 
     <p id="costResults"></p>
 
+    <hr>
+
+    <h2>Choose an operation</h2>
+
+    <form>
+        <input type="radio"
+               id="product"
+               name="operation"
+               value="mul"
+               onclick="chooseOp()">
+        <label for="product">Product</label>
+        <br>
+
+        <input type="radio"
+               id="sum"
+               name="operation"
+               value="add"
+               onclick="chooseOp()">
+        <label for="sum">Sum</label>
+        <br>
+
+        <input type="radio"
+               id="divide"
+               name="operation"
+               value="div"
+               onclick="chooseOp()">
+        <label for="divide">Divide</label>
+    </form>
+
+    <p id="operationResults"></p>
+
     <script>
+
         function doDiscount() {
             let number = Number(document.getElementById("numberItems").value);
             let cost = Number(document.getElementById("itemCost").value);
@@ -50,7 +82,8 @@
                     totalCost = checkCount * cost;
                 } else {
                     totalCost = (discountAt * cost) +
-                        ((checkCount - discountAt) * cost * (1 - discountRate));
+                        ((checkCount - discountAt) *
+                        cost * (1 - discountRate));
                 }
 
                 costs += "checkCount " + checkCount +
@@ -60,6 +93,44 @@
             document.getElementById("costResults").innerHTML =
                 "Costs are: " + costs;
         }
+
+
+        function chooseOp() {
+            let count =
+                Number(document.getElementById("numberItems").value);
+
+            let discountAt =
+                Number(document.getElementById("numberForDiscount").value);
+
+            let result;
+            let message;
+
+            if (document.getElementById("product").checked) {
+
+                result = count * discountAt;
+
+                message = count + " times " +
+                          discountAt + " is " + result;
+
+            } else if (document.getElementById("sum").checked) {
+
+                result = count + discountAt;
+
+                message = count + " plus " +
+                          discountAt + " is " + result;
+
+            } else if (document.getElementById("divide").checked) {
+
+                result = count / discountAt;
+
+                message = count + " divided by " +
+                          discountAt + " is " + result;
+            }
+
+            document.getElementById("operationResults").innerHTML =
+                message;
+        }
+
     </script>
 
 </body>
