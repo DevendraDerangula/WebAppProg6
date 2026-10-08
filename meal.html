@@ -4,92 +4,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Devendra's Meal Planner</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-light">
 
-    <h1>Devendra Derangula meal planner</h1>
+<div class="container mt-5">
 
-    <h2>Meal Choices</h2>
+    <div class="card shadow p-4">
 
-    <form>
-        <input type="checkbox" id="breakfast" value="True">
-        <label for="breakfast">Breakfast</label>
-        <br>
+        <h1 class="text-center mb-4">
+            Devendra Derangula meal planner
+        </h1>
 
-        <input type="checkbox" id="lunch" value="False">
-        <label for="lunch">Lunch</label>
-        <br>
 
-        <input type="checkbox" id="dinner" value="True">
-        <label for="dinner">Dinner</label>
-        <br><br>
+        <h2>Meal Choices</h2>
 
-        <input type="button"
-               value="Meal Plan Choices"
-               onclick="choices()">
-    </form>
+        <form>
 
-    <br>
+            <div class="form-check">
 
-    <h2>Update Meal Plan</h2>
+                <input type="checkbox"
+                       class="form-check-input"
+                       id="breakfast"
+                       value="True">
 
-    <form>
-        <label for="cuisine">Enter cuisine type</label>
-        <input type="text" id="cuisine" value="Italian">
-        <br><br>
+                <label class="form-check-label"
+                       for="breakfast">
+                    Breakfast
+                </label>
 
-        <label for="beverage">Enter beverage choice</label>
-        <input type="text" id="beverage" value="water">
-        <br><br>
+            </div>
 
-        <input type="button"
-               value="Update the meal plan"
-               onclick="updateMeal()">
-    </form>
 
-    <p id="mealResults"></p>
+            <div class="form-check">
 
-    <script>
-        let my_meal_plan = {};
+                <input type="checkbox"
+                       class="form-check-input"
+                       id="lunch"
+                       value="False">
 
-        function choices() {
-            my_meal_plan = {};
+                <label class="form-check-label"
+                       for="lunch">
+                    Lunch
+                </label>
 
-            my_meal_plan.breakfast =
-                document.getElementById("breakfast").checked;
+            </div>
 
-            my_meal_plan.lunch =
-                document.getElementById("lunch").checked;
 
-            my_meal_plan.dinner =
-                document.getElementById("dinner").checked;
+            <div class="form-check">
 
-            document.getElementById("mealResults").innerHTML =
-                "Breakfast: " + my_meal_plan.breakfast +
-                "; Lunch: " + my_meal_plan.lunch +
-                "; Dinner: " + my_meal_plan.dinner;
-        }
+                <input type="checkbox"
+                       class="form-check-input"
+                       id="dinner"
+                       value="True">
 
-        function updateMeal() {
-            let cuisine =
-                document.getElementById("cuisine").value;
+                <label class="form-check-label"
+                       for="dinner">
+                    Dinner
+                </label>
 
-            let beverage =
-                document.getElementById("beverage").value;
+            </div>
 
-            my_meal_plan["cuisine"] = cuisine;
-            my_meal_plan["beverage"] = beverage;
 
-            document.getElementById("mealResults").innerHTML =
-                "Breakfast: " + my_meal_plan.breakfast +
-                "; Lunch: " + my_meal_plan.lunch +
-                "; Dinner: " + my_meal_plan.dinner +
-                "; Cuisine: " + my_meal_plan.cuisine +
-                "; Beverage: " + my_meal_plan.beverage;
-        }
-    </script>
+            <input type="button"
+                   class="btn btn-primary mt-3"
+                   value="Meal Plan Choices"
+                   onclick="choices()">
+
+        </form>
+
+
+        <hr class="my-4">
+
+
+        <h2>Update Meal Plan</h2>
+
+        <form>
+
+            <div class="mb-3">
+
+                <label for="cuisine"
+                       class="form-label">
+                    Enter cuisine type
+                </label>
+
+                <input type="text"
+                       class="form-control"
+                       id="cuisine"
+                       value="Italian">
+
+            </div>
+
+
+            <div class="mb-3">
+
+                <label for="beverage"
+                       class="form-label">
+                    Enter beverage choice
+                </label>
+
+                <input type="text"
+                       class="form-control"
+                       id="beverage"
+                       value="water">
+
+            </div>
+
+
+            <input type="button"
+                   class="btn btn-success"
+                   value="Update the meal plan"
+                   onclick="updateMeal()">
+
+        </form>
+
+
+        <div id="mealResults"
+             class="alert alert-info mt-3">
+            Your meal plan will appear here.
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    let my_meal_plan = {};
+
+
+    function choices() {
+
+        my_meal_plan = {};
+
+
+        my_meal_plan.breakfast =
+            document.getElementById("breakfast").checked;
+
+        my_meal_plan.lunch =
+            document.getElementById("lunch").checked;
+
+        my_meal_plan.dinner =
+            document.getElementById("dinner").checked;
+
+
+        document.getElementById("mealResults").innerHTML =
+            "Breakfast: " +
+            my_meal_plan.breakfast +
+            "; Lunch: " +
+            my_meal_plan.lunch +
+            "; Dinner: " +
+            my_meal_plan.dinner;
+    }
+
+
+
+    function updateMeal() {
+
+        let cuisine =
+            document.getElementById("cuisine").value;
+
+        let beverage =
+            document.getElementById("beverage").value;
+
+
+        my_meal_plan["cuisine"] = cuisine;
+
+        my_meal_plan["beverage"] = beverage;
+
+
+        document.getElementById("mealResults").innerHTML =
+            "Breakfast: " +
+            my_meal_plan.breakfast +
+            "; Lunch: " +
+            my_meal_plan.lunch +
+            "; Dinner: " +
+            my_meal_plan.dinner +
+            "; Cuisine: " +
+            my_meal_plan.cuisine +
+            "; Beverage: " +
+            my_meal_plan.beverage;
+    }
+
+</script>
 
 </body>
 
