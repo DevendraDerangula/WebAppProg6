@@ -4,134 +4,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Devendra's Sales Computation</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-light">
 
-    <h1>Devendra Derangula sales computation</h1>
+<div class="container mt-5">
 
-    <form>
-        <label for="numberItems">Enter number items</label>
-        <input type="number" id="numberItems" value="1">
-        <br><br>
+    <div class="card shadow p-4">
 
-        <label for="itemCost">Enter the cost of one item</label>
-        <input type="number" id="itemCost" value="20.0">
-        <br><br>
+        <h1 class="text-center mb-4">
+            Devendra Derangula sales computation
+        </h1>
 
-        <label for="numberForDiscount">Enter number to get discount</label>
-        <input type="number" id="numberForDiscount" value="10">
-        <br><br>
+        <form>
 
-        <label for="discountRate">Enter the discount rate</label>
-        <input type="number" id="discountRate" value="0.15" step="0.01">
-        <br><br>
+            <div class="mb-3">
+                <label for="numberItems" class="form-label">
+                    Enter number items
+                </label>
 
-        <input type="button" value="Show costs" onclick="doDiscount()">
-    </form>
+                <input type="number"
+                       class="form-control"
+                       id="numberItems"
+                       value="1">
+            </div>
 
-    <p id="costResults"></p>
 
-    <hr>
+            <div class="mb-3">
+                <label for="itemCost" class="form-label">
+                    Enter the cost of one item
+                </label>
 
-    <h2>Choose an operation</h2>
+                <input type="number"
+                       class="form-control"
+                       id="itemCost"
+                       value="20.0">
+            </div>
 
-    <form>
-        <input type="radio"
-               id="product"
-               name="operation"
-               value="mul"
-               onclick="chooseOp()">
-        <label for="product">Product</label>
-        <br>
 
-        <input type="radio"
-               id="sum"
-               name="operation"
-               value="add"
-               onclick="chooseOp()">
-        <label for="sum">Sum</label>
-        <br>
+            <div class="mb-3">
+                <label for="numberForDiscount" class="form-label">
+                    Enter number to get discount
+                </label>
 
-        <input type="radio"
-               id="divide"
-               name="operation"
-               value="div"
-               onclick="chooseOp()">
-        <label for="divide">Divide</label>
-    </form>
+                <input type="number"
+                       class="form-control"
+                       id="numberForDiscount"
+                       value="10">
+            </div>
 
-    <p id="operationResults"></p>
 
-    <script>
+            <div class="mb-3">
+                <label for="discountRate" class="form-label">
+                    Enter the discount rate
+                </label>
 
-        function doDiscount() {
-            let number = Number(document.getElementById("numberItems").value);
-            let cost = Number(document.getElementById("itemCost").value);
-            let discountRate = Number(document.getElementById("discountRate").value);
-            let discountAt = Number(document.getElementById("numberForDiscount").value);
+                <input type="number"
+                       class="form-control"
+                       id="discountRate"
+                       value="0.15"
+                       step="0.01">
+            </div>
 
-            let costs = "";
 
-            for (let i = 1; i <= 5; i++) {
-                let checkCount = i * number;
-                let totalCost;
+            <input type="button"
+                   class="btn btn-primary"
+                   value="Show costs"
+                   onclick="doDiscount()">
 
-                if (checkCount <= discountAt) {
-                    totalCost = checkCount * cost;
-                } else {
-                    totalCost = (discountAt * cost) +
-                        ((checkCount - discountAt) *
-                        cost * (1 - discountRate));
-                }
+        </form>
 
-                costs += "checkCount " + checkCount +
-                         " is " + totalCost + "; ";
+
+        <div id="costResults"
+             class="alert alert-info mt-3">
+            Costs will appear here.
+        </div>
+
+
+        <hr class="my-4">
+
+
+        <h2>Choose an operation</h2>
+
+        <form>
+
+            <div class="form-check">
+
+                <input type="radio"
+                       class="form-check-input"
+                       id="product"
+                       name="operation"
+                       value="mul"
+                       onclick="chooseOp()">
+
+                <label class="form-check-label"
+                       for="product">
+                    Product
+                </label>
+
+            </div>
+
+
+            <div class="form-check">
+
+                <input type="radio"
+                       class="form-check-input"
+                       id="sum"
+                       name="operation"
+                       value="add"
+                       onclick="chooseOp()">
+
+                <label class="form-check-label"
+                       for="sum">
+                    Sum
+                </label>
+
+            </div>
+
+
+            <div class="form-check">
+
+                <input type="radio"
+                       class="form-check-input"
+                       id="divide"
+                       name="operation"
+                       value="div"
+                       onclick="chooseOp()">
+
+                <label class="form-check-label"
+                       for="divide">
+                    Divide
+                </label>
+
+            </div>
+
+        </form>
+
+
+        <div id="operationResults"
+             class="alert alert-secondary mt-3">
+            Choose an operation.
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    function doDiscount() {
+
+        let number =
+            Number(document.getElementById("numberItems").value);
+
+        let cost =
+            Number(document.getElementById("itemCost").value);
+
+        let discountRate =
+            Number(document.getElementById("discountRate").value);
+
+        let discountAt =
+            Number(document.getElementById("numberForDiscount").value);
+
+
+        let costs = "";
+
+
+        for (let i = 1; i <= 5; i++) {
+
+            let checkCount = i * number;
+
+            let totalCost;
+
+
+            if (checkCount <= discountAt) {
+
+                totalCost = checkCount * cost;
+
+            } else {
+
+                totalCost =
+                    (discountAt * cost) +
+                    ((checkCount - discountAt) *
+                    cost *
+                    (1 - discountRate));
             }
 
-            document.getElementById("costResults").innerHTML =
-                "Costs are: " + costs;
+
+            costs +=
+                "checkCount " +
+                checkCount +
+                " is " +
+                totalCost +
+                "; ";
         }
 
 
-        function chooseOp() {
-            let count =
-                Number(document.getElementById("numberItems").value);
+        document.getElementById("costResults").innerHTML =
+            "Costs are: " + costs;
+    }
 
-            let discountAt =
-                Number(document.getElementById("numberForDiscount").value);
 
-            let result;
-            let message;
 
-            if (document.getElementById("product").checked) {
+    function chooseOp() {
 
-                result = count * discountAt;
+        let count =
+            Number(document.getElementById("numberItems").value);
 
-                message = count + " times " +
-                          discountAt + " is " + result;
+        let discountAt =
+            Number(document.getElementById("numberForDiscount").value);
 
-            } else if (document.getElementById("sum").checked) {
 
-                result = count + discountAt;
+        let result;
+        let message;
 
-                message = count + " plus " +
-                          discountAt + " is " + result;
 
-            } else if (document.getElementById("divide").checked) {
+        if (document.getElementById("product").checked) {
 
-                result = count / discountAt;
+            result = count * discountAt;
 
-                message = count + " divided by " +
-                          discountAt + " is " + result;
-            }
+            message =
+                count +
+                " times " +
+                discountAt +
+                " is " +
+                result;
 
-            document.getElementById("operationResults").innerHTML =
-                message;
+
+        } else if (document.getElementById("sum").checked) {
+
+            result = count + discountAt;
+
+            message =
+                count +
+                " plus " +
+                discountAt +
+                " is " +
+                result;
+
+
+        } else if (document.getElementById("divide").checked) {
+
+            result = count / discountAt;
+
+            message =
+                count +
+                " divided by " +
+                discountAt +
+                " is " +
+                result;
         }
 
-    </script>
+
+        document.getElementById("operationResults").innerHTML =
+            message;
+    }
+
+</script>
 
 </body>
 
